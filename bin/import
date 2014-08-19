@@ -36,4 +36,4 @@ function write(config, file) {
   fs.writeFileSync(file, contents);
 }
 
-write(config, path.join(base, 'config.js'));
+write(config, path.join(base, 'lib', 'constants', 'config.js'));
