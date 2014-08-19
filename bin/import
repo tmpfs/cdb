@@ -6,7 +6,8 @@ var fs = require('fs')
   , EOL = require('os').EOL;
 
 var base = path.normalize(path.join(__dirname, '..'));
-var defaults = path.join(base, 'default.ini');
+var defaults = process.argv[2]
+  ? process.argv[2] : path.join(base, 'default.ini');
 var config = ini.parse(fs.readFileSync(defaults, 'utf-8'))
 
 function toObject(list, parent) {
