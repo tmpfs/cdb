@@ -1,0 +1,21 @@
+{
+  "name": "cdb",
+  "version": "0.0.1",
+  "description": "Couchdb library for rlx(1)",
+  "author": "muji <noop@xpm.io>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/freeformsystems/cdb"
+  },
+  "bugs": {
+    "url": "https://github.com/freeformsystems/cdb/issues"
+  },
+  "directories": {},
+  "dependencies": {
+    "request": "^2.40.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "readme": "mdp --force -v"
+  }
+}
