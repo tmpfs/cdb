@@ -13,5 +13,4 @@ for(k in config) {
   map[k] = config[k].keys;
 }
 
-//console.dir(sections);
-//console.dir(module.exports);
+module.exports.CouchError = require('./lib/error');
