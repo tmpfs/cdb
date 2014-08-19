@@ -1,4 +1,5 @@
 module.exports = require('./lib');
+module.exports.schema = require('./lib/schema');
 module.exports.log = {
   levels: require('./levels')
 }

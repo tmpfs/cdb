@@ -1,5 +1,6 @@
 [couchdb]: http://couchdb.apache.org
 [couch-api]: http://docs.couchdb.org/en/latest/api/
+[async-validate]: https://github.com/freeformsystems/async-validate
 [nano]: https://github.com/dscape/nano
 [request]: https://github.com/mikeal/request
 [node]: http://nodejs.org
