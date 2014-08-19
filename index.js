@@ -14,3 +14,8 @@ for(k in config) {
 }
 
 module.exports.CouchError = require('./lib/error');
+
+module.exports.user = {
+  prefix: 'org.couchdb.user:',
+  db: config.couch_httpd_auth.defaults.authentication_db
+}
