@@ -1,0 +1,38 @@
+#!/usr/bin/env node
+
+var fs = require('fs')
+  , path = require('path')
+  , ini = require('ini')
+  , EOL = require('os').EOL;
+
+var base = path.normalize(path.join(__dirname, '..'));
+var defaults = path.join(base, 'default.ini');
+var config = ini.parse(fs.readFileSync(defaults, 'utf-8'))
+
+function toObject(list, parent) {
+  var o = {};
+  list.forEach(function(value) {
+    o[value] = parent ? parent[value] : value;
+  })
+  return o;
+}
+
+function write(config, file) {
+  var sections = Object.keys(config);
+  var exports = 'module.exports';
+  var assignment = ' = ';
+  var obj = {}, i, k, v;
+  for(i = 0;i < sections.length;i++) {
+    k = sections[i];
+    v = config[k];
+    obj[k] = {
+      name: k,
+      keys: toObject(Object.keys(v)),
+      defaults: toObject(Object.keys(v), v)
+    }
+  }
+  var contents = exports + assignment + JSON.stringify(obj, undefined, 2);
+  fs.writeFileSync(file, contents);
+}
+
+write(config, path.join(base, 'config.js'));

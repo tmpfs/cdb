@@ -10,12 +10,14 @@
   "bugs": {
     "url": "https://github.com/freeformsystems/cdb/issues"
   },
-  "directories": {},
   "dependencies": {
     "request": "^2.40.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "ini": "^1.2.1"
+  },
   "scripts": {
+    "import": "./bin/import",
     "readme": "mdp --force -v"
   },
   "mdp": {
