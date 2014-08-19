@@ -17,5 +17,27 @@
   "devDependencies": {},
   "scripts": {
     "readme": "mdp --force -v"
+  },
+  "mdp": {
+    "title": "cdb",
+    "pedantic": true,
+    "include": "doc/readme",
+    "require": "lib",
+    "links": "links.md",
+    "toc": "Table of Contents",
+    "base": "https://github.com/freeformsystems/cdb",
+    "partial": [
+      {
+        "inc": [
+          "introduction.md",
+          "install.md"
+        ]
+      },
+      {
+        "inc": [
+          "developer.md"
+        ]
+      }
+    ]
   }
 }
