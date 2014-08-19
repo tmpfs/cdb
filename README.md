@@ -16,7 +16,7 @@ Library for [couchdb](http://couchdb.apache.org) designed for [rlx](https://gith
 This module differs from modules such as [nano](https://github.com/dscape/nano) in that it is designed to have feature parity with the [couch-api](http://docs.couchdb.org/en/latest/api/). As such it exhibits some interesting behaviour:
 
 1. Encapsulates many constants for [couchdb](http://couchdb.apache.org), see [config.js](https://github.com/freeformsystems/cdb/blob/master/config.js), [levels.js](https://github.com/freeformsystems/cdb/blob/master/levels.js).
-2. Stashes request information so that a history of requests is available and the last request may be repeated.
+2. Stashes request information so that a history of requests is available and the last request may be repeated (useful for lazy authentication).
 3. Exposes schema descriptors that may be used with [async-validate](https://github.com/freeformsystems/async-validate), see [schema](https://github.com/freeformsystems/cdb/blob/master/lib/schema).
 
 ## Install
