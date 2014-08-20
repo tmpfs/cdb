@@ -1,6 +1,6 @@
 {
   "name": "cdb",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "description": "Couchdb library for rlx(1)",
   "author": "muji <noop@xpm.io>",
   "repository": {
