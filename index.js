@@ -18,3 +18,8 @@ module.exports.user = {
   prefix: 'org.couchdb.user:',
   db: config.couch_httpd_auth.defaults.authentication_db
 }
+
+var constants = require('./lib/constants');
+for(k in constants) {
+  module.exports[k] = constants[k];
+}
