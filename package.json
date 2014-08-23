@@ -11,6 +11,7 @@
     "url": "https://github.com/freeformsystems/cdb/issues"
   },
   "dependencies": {
+    "cli-logger": "^0.5.14",
     "request": "^2.40.0"
   },
   "devDependencies": {
