@@ -3,6 +3,7 @@
   "version": "0.1.1",
   "description": "Couchdb library for rlx(1)",
   "author": "muji <noop@xpm.io>",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/freeformsystems/cdb"
@@ -11,12 +12,12 @@
     "url": "https://github.com/freeformsystems/cdb/issues"
   },
   "dependencies": {
-    "async": "^0.9.0",
-    "cli-logger": "~0.5.35",
-    "request": "~2.51.0"
+    "async": "~1.4.2",
+    "cli-logger": "~0.5.40",
+    "request": "~2.61.0"
   },
   "devDependencies": {
-    "ini": "~1.3.2"
+    "ini": "~1.3.4"
   },
   "scripts": {
     "import": "./bin/import",
