@@ -6,10 +6,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/freeformsystems/cdb"
+    "url": "https://github.com/tmpfs/cdb"
   },
   "bugs": {
-    "url": "https://github.com/freeformsystems/cdb/issues"
+    "url": "https://github.com/tmpfs/cdb/issues"
   },
   "dependencies": {
     "async": "~1.5.2",
@@ -30,7 +30,7 @@
     "require": "lib",
     "links": "links.md",
     "toc": "Table of Contents",
-    "base": "https://github.com/freeformsystems/cdb",
+    "base": "https://github.com/tmpfs/cdb",
     "partial": [
       {
         "inc": [
