@@ -5,7 +5,9 @@ Table of Contents
   * [Install](#install)
   * [Developer](#developer)
     * [Test](#test)
+    * [Cover](#cover)
     * [Lint](#lint)
+    * [Clean](#clean)
     * [Import](#import)
     * [Readme](#readme)
 
@@ -30,7 +32,19 @@ npm i cdb
 
 ### Test
 
-The [rlx](https://github.com/tmpfs/rlx) module tests this library extensively.
+Run the test specifications:
+
+```
+npm test
+```
+
+### Cover
+
+To generate code coverage run:
+
+```
+npm run cover
+```
 
 ### Lint
 
@@ -38,6 +52,14 @@ Run the source tree through [jshint](http://jshint.com) and [jscs](http://jscs.i
 
 ```
 npm run lint
+```
+
+### Clean
+
+Remove generated files:
+
+```
+npm run clean
 ```
 
 ### Import
