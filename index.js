@@ -1,4 +1,4 @@
-module.exports = require('./lib');
+module.exports = require('./lib/server');
 module.exports.util = require('./lib/util');
 module.exports.schema = require('./lib/schema');
 module.exports.log = {
