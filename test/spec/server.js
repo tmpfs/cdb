@@ -1,5 +1,5 @@
 var expect = require('chai').expect
-  , Server = require('../../lib/index')
+  , Server = require('../../index')
 
 describe('cdb:', function() {
 

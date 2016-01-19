@@ -27,6 +27,7 @@
     "lint": "jshint . && jscs .",
     "import": "./bin/import",
     "readme": "mdp --force -v",
+    "clean": "rm -rf coverage",
     "test": "NODE_ENV=test mocha ${SPEC:-test/spec}",
     "cover": "NODE_ENV=test istanbul cover _mocha -- ${SPEC:-test/spec}",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
