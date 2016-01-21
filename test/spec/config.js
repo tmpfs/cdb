@@ -23,7 +23,31 @@ describe('cdb:', function() {
     })
   });
 
-  it('should get server config', function(done) {
+  it('should get server entire config', function(done) {
+    var server = Server({server: process.env.COUCH})
+      , opts = {};
+    opts.headers = headers;
+    server.config.get(opts, function(err, res, body) {
+      expect(err).to.eql(null);
+      expect(res).to.be.an('object');
+      expect(body).to.be.an('object');
+      done();
+    })
+  });
+
+  it('should get server config (section)', function(done) {
+    var server = Server({server: process.env.COUCH})
+      , opts = {section: Server.sections.cors};
+    opts.headers = headers;
+    server.config.get(opts, function(err, res, body) {
+      expect(err).to.eql(null);
+      expect(res).to.be.an('object');
+      expect(body).to.be.an('object');
+      done();
+    })
+  });
+
+  it('should get server config (key)', function(done) {
     var server = Server({server: process.env.COUCH})
       , opts = {section: Server.sections.cors, key: 'credentials'};
     opts.headers = headers;
@@ -31,19 +55,6 @@ describe('cdb:', function() {
       expect(err).to.eql(null);
       expect(res).to.be.an('object');
       expect(body).to.be.a('string');
-      done();
-    })
-  });
-
-  it('should error without section (get)', function(done) {
-    var server = Server({server: process.env.COUCH})
-      , opts = {key: 'mock-key'};
-    opts.headers = headers;
-    server.config.get(opts, function(err) {
-      function fn() {
-        throw err;
-      }
-      expect(fn).throws(/section option is required/i)
       done();
     })
   });
