@@ -48,19 +48,6 @@ describe('cdb:', function() {
     })
   });
 
-  it('should error without key (get)', function(done) {
-    var server = Server({server: process.env.COUCH})
-      , opts = {section: 'mock-section'};
-    opts.headers = headers;
-    server.config.get(opts, function(err) {
-      function fn() {
-        throw err;
-      }
-      expect(fn).throws(/key option is required/i)
-      done();
-    })
-  });
-
   it('should error without section (set)', function(done) {
     var server = Server({server: process.env.COUCH})
       , opts = {key: 'mock-key'};
