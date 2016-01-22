@@ -86,4 +86,16 @@ describe('cdb:', function() {
     })
   });
 
+  it('should remove session document without cookie (logout)', function(done) {
+    var server = Server();
+    delete server.jar.cookie;
+    server.session.rm({server: process.env.COUCH}, function(err, res, body) {
+      expect(err).to.eql(null);
+      expect(res).to.be.an('object');
+      expect(body).to.be.an('object');
+      expect(body.ok).to.eql(true);
+      done();
+    })
+  });
+
 });
