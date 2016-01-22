@@ -234,6 +234,29 @@ describe('cdb:', function() {
     )
   });
 
+  it('should execute temp view', function(done) {
+    var server = Server();
+    var opts = {
+      server: process.env.COUCH,
+      db: database,
+      body: {
+        map: 'function(doc) {emit(null, doc)}'
+      },
+      qs: {
+        limit: 11
+      }
+    };
+    server.db.temp(opts,
+      function(err, res, body) {
+        expect(err).to.eql(null);
+        expect(res).to.be.an('object');
+        expect(body).to.be.an('object');
+        expect(body.rows).to.be.an('array');
+        done();
+      }
+    )
+  });
+
   it('should remove database', function(done) {
     var server = Server({server: process.env.COUCH, db: database});
     server.db.rm(function(err, res, body) {
