@@ -192,6 +192,29 @@ describe('cdb:', function() {
     )
   });
 
+  it('should get database revs limit', function(done) {
+    var server = Server({server: process.env.COUCH, db: database});
+    server.db.limit(function(err, res, body) {
+      expect(err).to.eql(null);
+      expect(res).to.be.an('object');
+      expect(body).to.be.a('number');
+      done();
+    })
+  });
+
+  it('should set database revs limit', function(done) {
+    var server = Server({server: process.env.COUCH, db: database});
+    server.db.limit({limit: 10},
+      function(err, res, body) {
+        expect(err).to.eql(null);
+        expect(res).to.be.an('object');
+        expect(body).to.be.an('object');
+        expect(body.ok).to.eql(true);
+        done();
+      }
+    )
+  });
+
   it('should remove database', function(done) {
     var server = Server({server: process.env.COUCH, db: database});
     server.db.rm(function(err, res, body) {
