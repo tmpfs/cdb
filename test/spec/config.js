@@ -113,7 +113,7 @@ describe('cdb:', function() {
 
   it('should remove server config', function(done) {
     var server = Server({server: process.env.COUCH})
-      , opts = {section: Server.sections.admins, key: 'foo'};
+      , opts = {section: Server.sections.admins, key: username};
     opts.headers = headers;
     server.config.rm(opts, function(err, res, body) {
       expect(err).to.eql(null);
