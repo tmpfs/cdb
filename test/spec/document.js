@@ -37,4 +37,18 @@ describe('cdb:', function() {
     })     
   });
 
+  it('should get document', function(done) {
+    var server = Server({server: process.env.COUCH, db: database})
+      , opts = {
+        id: 'mock-document'
+      }
+    server.doc.get(opts, function(err, res, body) {
+      expect(err).to.eql(null);
+      expect(res).to.be.an('object');
+      expect(body).to.be.an('object');
+      expect(body.bool).to.eql(true);
+      done();
+    })     
+  });
+
 });
