@@ -215,6 +215,25 @@ describe('cdb:', function() {
     )
   });
 
+  it('should purge db doc', function(done) {
+    var server = Server();
+    var opts = {
+      server: process.env.COUCH,
+      db: database,
+      body: {'missing-id': []}
+    };
+    server.db.purge(opts,
+      function(err, res, body) {
+        expect(err).to.eql(null);
+        expect(res).to.be.an('object');
+        expect(body).to.be.an('object');
+        expect(body.purge_seq).to.be.a('number');
+        expect(body.purged).to.be.an('object');
+        done();
+      }
+    )
+  });
+
   it('should remove database', function(done) {
     var server = Server({server: process.env.COUCH, db: database});
     server.db.rm(function(err, res, body) {
