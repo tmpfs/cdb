@@ -295,6 +295,29 @@ describe('cdb:', function() {
     )
   });
 
+  it('should add bulk documents', function(done) {
+    var server = Server()
+      , opts = {
+          server: process.env.COUCH, 
+          db: database,
+          body: {
+            docs: [
+              {_id: '1'},
+              {_id: '2'}
+            ]
+          }
+        };
+    server.db.bulk(opts, function(err, res, body) {
+      expect(err).to.eql(null);
+      expect(res).to.be.an('object');
+      expect(body).to.be.an('array')
+        .to.have.length(2);
+      expect(body[0].ok).to.eql(true);
+      expect(body[1].ok).to.eql(true);
+      done();
+    })
+  });
+
   it('should remove database', function(done) {
     var server = Server({server: process.env.COUCH, db: database});
     server.db.rm(function(err, res, body) {
