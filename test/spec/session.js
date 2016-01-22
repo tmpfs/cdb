@@ -80,6 +80,8 @@ describe('cdb:', function() {
       expect(res).to.be.an('object');
       expect(body).to.be.an('object');
       expect(body.ok).to.eql(true);
+      expect(server.jar.cookie[process.env.COUCH][username])
+        .to.eql(undefined);
       done();
     })
   });
