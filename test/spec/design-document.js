@@ -1,6 +1,6 @@
 var expect = require('chai').expect
   , Server = require('../../index')
-  , database = 'mock-document-db';
+  , database = 'mock-ddoc-db';
 
 describe('cdb:', function() {
 
@@ -18,10 +18,11 @@ describe('cdb:', function() {
     })     
   })
 
-  it('should create document', function(done) {
+  it('should create ddoc document', function(done) {
     var server = Server({server: process.env.COUCH, db: database})
       , opts = {
         id: 'mock-document',
+        ddoc: true,
         body: {
           bool: true
         }      
@@ -37,10 +38,11 @@ describe('cdb:', function() {
     })     
   });
 
-  it('should head document', function(done) {
+  it('should head ddoc document', function(done) {
     var server = Server({server: process.env.COUCH, db: database})
       , opts = {
-        id: 'mock-document'
+        id: 'mock-document',
+        ddoc: true
       }
     server.doc.head(opts, function(err, res, body) {
       expect(err).to.eql(null);
@@ -53,10 +55,11 @@ describe('cdb:', function() {
     })     
   });
 
-  it('should get document', function(done) {
+  it('should get ddoc document', function(done) {
     var server = Server({server: process.env.COUCH, db: database})
       , opts = {
-        id: 'mock-document'
+        id: 'mock-document',
+        ddoc: true
       }
     server.doc.get(opts, function(err, res, body) {
       expect(err).to.eql(null);
@@ -67,23 +70,11 @@ describe('cdb:', function() {
     })     
   });
 
-  it('should error on missing document (remove)', function(done) {
+  it('should remove ddoc document', function(done) {
     var server = Server({server: process.env.COUCH, db: database})
       , opts = {
-        id: 'mock-missing-document'
-      }
-    server.doc.rm(opts, function(err, res) {
-      expect(err).to.be.an('object');
-      expect(err.status).to.eql(404);
-      expect(res).to.be.an('object');
-      done();
-    })     
-  });
-
-  it('should remove document', function(done) {
-    var server = Server({server: process.env.COUCH, db: database})
-      , opts = {
-        id: 'mock-document'
+        id: 'mock-document',
+        ddoc: true
       }
     server.doc.rm(opts, function(err, res, body) {
       expect(err).to.eql(null);
