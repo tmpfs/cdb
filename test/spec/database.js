@@ -12,6 +12,7 @@ describe('cdb:', function() {
       expect(err).to.be.instanceof(CouchError)
       expect(err.status).to.eql(404);
       expect(err.reason).to.eql('not_found');
+      expect(err.getErrorKey()).to.eql('ENOT_FOUND');
       expect(res).to.be.an('object');
       expect(body).to.eql('');
       done();
