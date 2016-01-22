@@ -234,6 +234,25 @@ describe('cdb:', function() {
     )
   });
 
+  it('should get missing revs', function(done) {
+    var server = Server();
+    var opts = {
+      server: process.env.COUCH,
+      db: database,
+      body: {'missing-id': []}
+    };
+    server.db.missingrevs(opts,
+      function(err, res, body) {
+        expect(err).to.eql(null);
+        expect(res).to.be.an('object');
+        expect(body).to.be.an('object');
+        expect(body.missing_revs).to.be.an('object');
+        expect(body.missing_revs['missing-id']).to.be.an('array');
+        done();
+      }
+    )
+  });
+
   it('should execute temp view', function(done) {
     var server = Server();
     var opts = {
