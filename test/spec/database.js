@@ -94,6 +94,30 @@ describe('cdb:', function() {
     )
   });
 
+  it('should cleanup database', function(done) {
+    var server = Server({server: process.env.COUCH, db: database});
+    server.db.cleanup(function(err, res, body) {
+      expect(err).to.eql(null);
+      expect(res).to.be.an('object');
+      expect(body).to.be.an('object');
+      expect(body.ok).to.eql(true);
+      done();
+    })
+  });
+
+  it('should cleanup database with opts', function(done) {
+    var server = Server();
+    server.db.cleanup({server: process.env.COUCH, db: database},
+      function(err, res, body) {
+        expect(err).to.eql(null);
+        expect(res).to.be.an('object');
+        expect(body).to.be.an('object');
+        expect(body.ok).to.eql(true);
+        done();
+      }
+    )
+  });
+
   it('should commit database', function(done) {
     var server = Server({server: process.env.COUCH, db: database});
     server.db.commit(function(err, res, body) {
