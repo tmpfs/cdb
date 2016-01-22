@@ -43,6 +43,30 @@ describe('cdb:', function() {
     )
   });
 
+  it('should compact database', function(done) {
+    var server = Server({server: process.env.COUCH, db: database});
+    server.db.compact(function(err, res, body) {
+      expect(err).to.eql(null);
+      expect(res).to.be.an('object');
+      expect(body).to.be.an('object');
+      expect(body.ok).to.eql(true);
+      done();
+    })
+  });
+
+  it('should compact database with opts', function(done) {
+    var server = Server();
+    server.db.compact({server: process.env.COUCH, db: database},
+      function(err, res, body) {
+        expect(err).to.eql(null);
+        expect(res).to.be.an('object');
+        expect(body).to.be.an('object');
+        expect(body.ok).to.eql(true);
+        done();
+      }
+    )
+  });
+
   it('should remove database', function(done) {
     var server = Server({server: process.env.COUCH, db: database});
     server.db.rm(function(err, res, body) {
