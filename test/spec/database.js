@@ -1,8 +1,22 @@
 var expect = require('chai').expect
   , Server = require('../../index')
+  , CouchError = require('../../lib/error')
   , database = 'mock-db';
 
 describe('cdb:', function() {
+
+  it('should head database (404)', function(done) {
+    var server = Server({server: process.env.COUCH, db: database});
+    server.db.head(function(err, res, body) {
+      expect(err).to.be.an('object');
+      expect(err).to.be.instanceof(CouchError)
+      expect(err.status).to.eql(404);
+      expect(err.reason).to.eql('not_found');
+      expect(res).to.be.an('object');
+      expect(body).to.eql('');
+      done();
+    })     
+  });
 
   it('should create database', function(done) {
     var server = Server({server: process.env.COUCH, db: database});
@@ -13,6 +27,18 @@ describe('cdb:', function() {
       expect(body.ok).to.eql(true);
       done();
     })     
+  });
+
+  it('should head database', function(done) {
+    var server = Server();
+    server.db.head({server: process.env.COUCH, db: database},
+      function(err, res, body) {
+        expect(err).to.eql(null);
+        expect(res).to.be.an('object');
+        expect(body).to.eql('');
+        done();
+      }
+    )     
   });
 
   it('should get database info', function(done) {
