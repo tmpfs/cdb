@@ -73,6 +73,21 @@ describe('cdb:', function() {
     })
   });
 
+  it('should set session document without cookie jar', function(done) {
+    var server = Server({server: process.env.COUCH})
+      , opts = {username: username, password: password};
+    delete server.session.jar;
+    server.session.set(opts, function(err, res, body) {
+      expect(err).to.eql(null);
+      expect(res).to.be.an('object');
+      expect(body).to.be.an('object');
+      expect(body.ok).to.eql(true);
+      expect(body.roles).to.be.an('array');
+      done();
+    })
+  });
+
+
   it('should remove session document (logout)', function(done) {
     var server = Server();
     server.session.rm({server: process.env.COUCH}, function(err, res, body) {
@@ -86,9 +101,9 @@ describe('cdb:', function() {
     })
   });
 
-  it('should remove session document without cookie (logout)', function(done) {
+  it('should remove session document without cookie jar', function(done) {
     var server = Server();
-    delete server.jar.cookie;
+    delete server.session.jar;
     server.session.rm({server: process.env.COUCH}, function(err, res, body) {
       expect(err).to.eql(null);
       expect(res).to.be.an('object');
