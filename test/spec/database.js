@@ -192,6 +192,24 @@ describe('cdb:', function() {
     )
   });
 
+  it('should compact database design document', function(done) {
+    var server = Server()
+      , opts = {
+          server: process.env.COUCH,
+          db: database,
+          ddoc: 'missing_ddoc'
+        };
+    // NOTE: this triggers a code path, don't care that the design
+    // NOTE: document does not exist
+    server.db.compact(opts, function(err, res, body) {
+      expect(err).to.be.an('object');
+      expect(err.status).to.eql(404);
+      expect(res).to.be.an('object');
+      expect(body).to.be.an('object');
+      done();
+    })
+  });
+
   it('should get database revs limit', function(done) {
     var server = Server({server: process.env.COUCH, db: database});
     server.db.limit(function(err, res, body) {
