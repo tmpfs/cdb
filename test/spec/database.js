@@ -94,6 +94,32 @@ describe('cdb:', function() {
     )
   });
 
+  it('should get database changes', function(done) {
+    var server = Server({server: process.env.COUCH, db: database});
+    server.db.changes(function(err, res, body) {
+      expect(err).to.eql(null);
+      expect(res).to.be.an('object');
+      expect(body).to.be.an('object');
+      expect(body.results).to.be.an('array');
+      expect(body.last_seq).to.be.a('number');
+      done();
+    })
+  });
+
+  it('should get database changes with opts', function(done) {
+    var server = Server();
+    server.db.changes({server: process.env.COUCH, db: database},
+      function(err, res, body) {
+        expect(err).to.eql(null);
+        expect(res).to.be.an('object');
+        expect(body).to.be.an('object');
+        expect(body.results).to.be.an('array');
+        expect(body.last_seq).to.be.a('number');
+        done();
+      }
+    )
+  });
+
   it('should cleanup database', function(done) {
     var server = Server({server: process.env.COUCH, db: database});
     server.db.cleanup(function(err, res, body) {
