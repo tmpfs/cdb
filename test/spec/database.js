@@ -15,6 +15,30 @@ describe('cdb:', function() {
     })     
   });
 
+  it('should get database info', function(done) {
+    var server = Server({server: process.env.COUCH, db: database});
+    server.db.info(function(err, res, body) {
+      expect(err).to.eql(null);
+      expect(res).to.be.an('object');
+      expect(body).to.be.an('object');
+      expect(body.db_name).to.eql(database);
+      done();
+    })
+  });
+
+  it('should get database info with opts', function(done) {
+    var server = Server();
+    server.db.info({server: process.env.COUCH, db: database},
+      function(err, res, body) {
+        expect(err).to.eql(null);
+        expect(res).to.be.an('object');
+        expect(body).to.be.an('object');
+        expect(body.db_name).to.eql(database);
+        done();
+      }
+    )
+  });
+
   it('should get all docs', function(done) {
     var server = Server({server: process.env.COUCH, db: database});
     server.db.all(function(err, res, body) {
