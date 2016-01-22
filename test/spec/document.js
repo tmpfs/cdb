@@ -37,6 +37,22 @@ describe('cdb:', function() {
     })     
   });
 
+  it('should head document', function(done) {
+    var server = Server({server: process.env.COUCH, db: database})
+      , opts = {
+        id: 'mock-document'
+      }
+    server.doc.head(opts, function(err, res, body) {
+      expect(err).to.eql(null);
+      expect(res).to.be.an('object');
+      expect(body.status).to.eql(200);
+      expect(body.headers).to.be.an('object');
+      expect(body.size).to.be.a('number');
+      expect(body.rev).to.be.a('string');
+      done();
+    })     
+  });
+
   it('should get document', function(done) {
     var server = Server({server: process.env.COUCH, db: database})
       , opts = {
@@ -47,6 +63,21 @@ describe('cdb:', function() {
       expect(res).to.be.an('object');
       expect(body).to.be.an('object');
       expect(body.bool).to.eql(true);
+      done();
+    })     
+  });
+
+  it('should remove document', function(done) {
+    var server = Server({server: process.env.COUCH, db: database})
+      , opts = {
+        id: 'mock-document'
+      }
+    server.doc.rm(opts, function(err, res, body) {
+      expect(err).to.eql(null);
+      expect(res).to.be.an('object');
+      expect(body.ok).to.eql(true);
+      expect(body.id).to.be.a('string');
+      expect(body.rev).to.be.a('string');
       done();
     })     
   });
