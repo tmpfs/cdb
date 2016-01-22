@@ -10,9 +10,37 @@ describe('cdb:', function() {
       expect(err).to.eql(null);
       expect(res).to.be.an('object');
       expect(body).to.be.an('object');
-      //expect(body.version).to.be.a('string');
+      expect(body.ok).to.eql(true);
       done();
     })     
+  });
+
+  it('should get all docs', function(done) {
+    var server = Server({server: process.env.COUCH, db: database});
+    server.db.all(function(err, res, body) {
+      expect(err).to.eql(null);
+      expect(res).to.be.an('object');
+      expect(body).to.be.an('object');
+      expect(body.total_rows).to.be.a('number');
+      expect(body.offset).to.be.a('number');
+      expect(body.rows).to.be.an('array');
+      done();
+    })
+  });
+
+  it('should get all docs with opts', function(done) {
+    var server = Server();
+    server.db.all({server: process.env.COUCH, db: database},
+      function(err, res, body) {
+        expect(err).to.eql(null);
+        expect(res).to.be.an('object');
+        expect(body).to.be.an('object');
+        expect(body.total_rows).to.be.a('number');
+        expect(body.offset).to.be.a('number');
+        expect(body.rows).to.be.an('array');
+        done();
+      }
+    )
   });
 
   it('should remove database', function(done) {
@@ -21,7 +49,7 @@ describe('cdb:', function() {
       expect(err).to.eql(null);
       expect(res).to.be.an('object');
       expect(body).to.be.an('object');
-      //expect(body.version).to.be.a('string');
+      expect(body.ok).to.eql(true);
       done();
     })     
   });
