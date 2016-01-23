@@ -46,8 +46,7 @@ describe('cdb:', function() {
       expect(body.ok).to.eql(true);
       expect(body.id).to.eql(docid);
       expect(body.rev).to.be.a('string');
-      // stash to trigger specified revision
-      // code path
+      // stash to trigger specified revision code path
       revision = body.rev;
       done();
     })
@@ -71,6 +70,8 @@ describe('cdb:', function() {
       expect(body.ok).to.eql(true);
       expect(body.id).to.eql(docid);
       expect(body.rev).to.be.a('string');
+      // stash to trigger specified revision code path
+      revision = body.rev;
       done();
     })
   });
@@ -107,6 +108,26 @@ describe('cdb:', function() {
       expect(body.headers).to.be.an('object');
       expect(body.size).to.be.a('number');
       expect(body.name).to.be.a('string');
+      expect(body.rev).to.be.a('string');
+      done();
+    })
+  });
+
+  it('should remove attachment with revision', function(done) {
+    var server = Server({server: process.env.COUCH, db: database})
+      , opts = {
+        id: docid,
+        attname: attname,
+        qs: {
+          rev: revision
+        }
+      }
+    server.att.rm(opts, function(err, res, body) {
+      expect(err).to.eql(null);
+      expect(res).to.be.an('object');
+      expect(body).to.be.an('object');
+      expect(body.ok).to.eql(true);
+      expect(body.id).to.eql(docid);
       expect(body.rev).to.be.a('string');
       done();
     })
