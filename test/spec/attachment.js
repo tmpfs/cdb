@@ -32,6 +32,39 @@ describe('cdb:', function() {
     })     
   })
 
+  it('should error on attempt to head missing document', function(done) {
+    var server = Server({server: process.env.COUCH, db: database})
+      , opts = {
+        id: 'missing-document',
+        method: 'post',
+        attname: attname,
+        file: fs.createReadStream('test/fixtures/mock.txt')
+      }
+    // triggers error handling code path in revision() method
+    server.att.put(opts, function(err) {
+      expect(err).to.be.instanceof(Error);
+      done();
+    })
+  });
+
+  it('should error on missing file path', function(done) {
+    var server = Server({server: process.env.COUCH, db: database})
+      , opts = {
+        id: docid,
+        attname: attname,
+        progress: true,
+        qs: {
+          rev: revision
+        },
+        file: 'test/fixtures/missing-file.txt'
+      }
+    // triggers error handling code path for fs.stat()
+    server.att.put(opts, function(err) {
+      expect(err).to.be.instanceof(Error);
+      done();
+    })
+  });
+
   it('should put attachment (stream)', function(done) {
     var server = Server({server: process.env.COUCH, db: database})
       , opts = {
