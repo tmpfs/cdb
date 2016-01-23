@@ -4,7 +4,7 @@ var expect = require('chai').expect
 describe('cdb:', function() {
 
   it('should create server instance', function(done) {
-    var server = Server();
+    var server = Server({jar: {}, bitwise: true});
     expect(server).to.be.an('object');
     var database = server.use('mydb');
     expect(database.options.db).to.eql('mydb');
