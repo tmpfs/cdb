@@ -4,6 +4,7 @@
   "description": "Couchdb library for rlx(1)",
   "author": "muji <noop@xpm.io>",
   "license": "MIT",
+  "main": "lib/server.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/tmpfs/cdb"
