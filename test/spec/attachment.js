@@ -112,4 +112,21 @@ describe('cdb:', function() {
     })
   });
 
+  it('should remove attachment', function(done) {
+    var server = Server({server: process.env.COUCH, db: database})
+      , opts = {
+        id: docid,
+        attname: attname
+      }
+    server.att.rm(opts, function(err, res, body) {
+      expect(err).to.eql(null);
+      expect(res).to.be.an('object');
+      expect(body).to.be.an('object');
+      expect(body.ok).to.eql(true);
+      expect(body.id).to.eql(docid);
+      expect(body.rev).to.be.a('string');
+      done();
+    })
+  });
+
 });
