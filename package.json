@@ -28,6 +28,7 @@
     "import": "./bin/import",
     "readme": "mdp --force -v",
     "clean": "rm -rf coverage",
+    "mock-file": "dd if=/dev/zero of=test/fixtures/mock.txt bs=65536 count=1",
     "pretest": "rm -rf target && mkdir target",
     "test": "NODE_ENV=test mocha test/global ${SPEC:-test/spec}",
     "precover": "npm run pretest",
