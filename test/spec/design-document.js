@@ -70,6 +70,24 @@ describe('cdb:', function() {
     })     
   });
 
+  it('should copy ddoc document', function(done) {
+    var server = Server({server: process.env.COUCH, db: database})
+      , opts = {
+        id: 'mock-document',
+        destination: 'mock-document-copy',
+        ddoc: true
+      }
+    server.doc.cp(opts, function(err, res, body) {
+      expect(err).to.eql(null);
+      expect(res).to.be.an('object');
+      expect(body).to.be.an('object');
+      expect(body.ok).to.eql(true);
+      expect(body.id).to.eql(opts.destination);
+      expect(body.rev).to.be.a('string');
+      done();
+    })     
+  });
+
   it('should remove ddoc document', function(done) {
     var server = Server({server: process.env.COUCH, db: database})
       , opts = {
