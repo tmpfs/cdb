@@ -28,7 +28,9 @@
     "import": "./bin/import",
     "readme": "mdp --force -v",
     "clean": "rm -rf coverage",
+    "pretest": "rm -rf target && mkdir target",
     "test": "NODE_ENV=test mocha test/global ${SPEC:-test/spec}",
+    "precover": "npm run pretest",
     "cover": "NODE_ENV=test istanbul cover _mocha -- test/global ${SPEC:-test/spec}",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
   },
