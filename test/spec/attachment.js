@@ -76,12 +76,30 @@ describe('cdb:', function() {
     })
   });
 
-  it('should get attachment (file)', function(done) {
+  it('should get attachment (file path)', function(done) {
     var server = Server({server: process.env.COUCH, db: database})
       , opts = {
         id: docid,
         attname: attname,
         file: 'target/mock.txt'
+      }
+    server.att.get(opts, function(err, res, body) {
+      expect(err).to.eql(null);
+      expect(res).to.be.an('object');
+      expect(body).to.eql(undefined);
+      var expected = '' + fs.readFileSync('test/fixtures/mock.txt');
+      var received = '' + fs.readFileSync('target/mock.txt');
+      expect(received).to.eql(expected);
+      done();
+    })
+  });
+
+  it('should get attachment (stream)', function(done) {
+    var server = Server({server: process.env.COUCH, db: database})
+      , opts = {
+        id: docid,
+        attname: attname,
+        file: fs.createWriteStream('target/mock.txt')
       }
     server.att.get(opts, function(err, res, body) {
       expect(err).to.eql(null);
