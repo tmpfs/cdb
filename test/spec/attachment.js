@@ -7,6 +7,8 @@ var fs = require('fs')
 
 describe('cdb:', function() {
 
+  var revision;
+
   before(function(done) {
     var server = Server({server: process.env.COUCH, db: database});
     server.db.add(function(err) {
@@ -36,6 +38,31 @@ describe('cdb:', function() {
         id: docid,
         attname: attname,
         file: fs.createReadStream('test/fixtures/mock.txt')
+      }
+    server.att.put(opts, function(err, res, body) {
+      expect(err).to.eql(null);
+      expect(res).to.be.an('object');
+      expect(body).to.be.an('object');
+      expect(body.ok).to.eql(true);
+      expect(body.id).to.eql(docid);
+      expect(body.rev).to.be.a('string');
+      // stash to trigger specified revision
+      // code path
+      revision = body.rev;
+      done();
+    })
+  });
+
+  it('should put attachment (file path)', function(done) {
+    var server = Server({server: process.env.COUCH, db: database})
+      , opts = {
+        id: docid,
+        attname: attname,
+        progress: true,
+        qs: {
+          rev: revision
+        },
+        file: 'test/fixtures/mock.txt'
       }
     server.att.put(opts, function(err, res, body) {
       expect(err).to.eql(null);
