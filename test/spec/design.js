@@ -12,7 +12,6 @@ describe('cdb:', function() {
           body: require('../fixtures/design')
         }
 
-    console.dir(opts.body);
     server.db.add(function(err) {
       if(err) {
         return done(err);
@@ -39,6 +38,19 @@ describe('cdb:', function() {
       expect(body.name).to.be.a('string')
         .that.eqls(design);
       expect(body.view_index).to.be.an('object');
+      done();
+    })     
+  });
+
+  it('should list design documents', function(done) {
+    var server = Server({server: process.env.COUCH, db: database})
+    server.design.ls(function(err, res, body) {
+      expect(err).to.eql(null);
+      expect(res).to.be.an('object');
+      expect(body).to.be.an('object');
+      expect(body.total_rows).to.be.a('number').that.is.gt(0);
+      expect(body.rows).to.be.an('array')
+        .to.have.length.gt(0);
       done();
     })     
   });
