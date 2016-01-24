@@ -55,4 +55,17 @@ describe('cdb:', function() {
     })     
   });
 
+  it('should list design documents with opts', function(done) {
+    var server = Server({server: process.env.COUCH, db: database})
+    server.design.ls({qs: {}}, function(err, res, body) {
+      expect(err).to.eql(null);
+      expect(res).to.be.an('object');
+      expect(body).to.be.an('object');
+      expect(body.total_rows).to.be.a('number').that.is.gt(0);
+      expect(body.rows).to.be.an('array')
+        .to.have.length.gt(0);
+      done();
+    })     
+  });
+
 });
