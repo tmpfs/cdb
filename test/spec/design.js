@@ -9,8 +9,10 @@ describe('cdb:', function() {
     var server = Server({server: process.env.COUCH, db: database})
       , opts = {
           ddoc: design,
-          body: {}      
+          body: require('../fixtures/design')
         }
+
+    console.dir(opts.body);
     server.db.add(function(err) {
       if(err) {
         return done(err);
