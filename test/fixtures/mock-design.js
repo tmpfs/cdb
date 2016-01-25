@@ -52,12 +52,5 @@ var doc = {
   }
 }
 
-function replacer(key, val) {
-  if(typeof val === 'function') {
-    val = val.toString();
-  }
-  return val;
-}
-
-module.exports = JSON.stringify(doc, replacer, 0);
+module.exports = JSON.stringify(doc, require('../replacer'), 0);
 /*jshint ignore:end */
