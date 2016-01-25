@@ -214,4 +214,23 @@ describe('cdb:', function() {
     })     
   });
 
+  it('should query design document view', function(done) {
+    var server = Server()
+      , opts = {
+          server: process.env.COUCH,
+          db: database,
+          ddoc: design,
+          name: 'mock'
+        }
+    server.design.view(opts, function(err, res, body) {
+      expect(err).to.eql(null);
+      expect(res).to.be.an('object');
+      expect(body).to.be.an('object');
+      expect(body.total_rows).to.be.a('number');
+      expect(body.offset).to.be.a('number');
+      expect(body.rows).to.be.an('array');
+      done();
+    })
+  });
+
 });
