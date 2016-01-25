@@ -253,21 +253,4 @@ describe('cdb:', function() {
     })
   });
 
-  it('should deploy design document', function(done) {
-    var server = Server()
-      , opts = {
-          server: process.env.COUCH,
-          db: database,
-          ddoc: design,
-          body: require('../fixtures/mock-design')
-        }
-    server.design.deploy(opts, function(err, res, body) {
-      expect(err).to.eql(null);
-      expect(res).to.eql(null);
-      expect(body).to.be.an('object');
-      expect(body.ok).to.eql(true);
-      done();
-    })
-  });
-
 });
