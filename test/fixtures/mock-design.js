@@ -33,7 +33,7 @@ var doc = {
   updates: {
     mock: function(doc, req) {
       if(!doc){
-        return [null, {code: 400,
+        return [null, {code: 404,
           json:
             {
               error: 'missing',
