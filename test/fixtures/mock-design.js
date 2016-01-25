@@ -49,7 +49,10 @@ var doc = {
         return [doc, {json: {ok: true}}];
       }
     }
-  }
+  },
+  rewrites: [
+    {from: '/foo', to: '../../bar'}
+  ]
 }
 
 module.exports = JSON.stringify(doc, require('../replacer'), 0);

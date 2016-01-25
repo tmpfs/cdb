@@ -233,4 +233,24 @@ describe('cdb:', function() {
     })
   });
 
+  it('should trigger rewrite rule', function(done) {
+    var server = Server()
+      , opts = {
+          server: process.env.COUCH,
+          db: database,
+          ddoc: design,
+          path: 'foo'
+        }
+    // NOTE: the rewrite target ../../bar is a 404
+    server.design.rewrite(opts, function(err, res, body) {
+      expect(err).to.be.instanceof(Error);
+      expect(err.status).to.eql(404);
+      expect(res).to.be.an('object');
+      expect(body).to.be.an('object');
+      expect(body.error).to.eql('not_found');
+      expect(body.reason).to.eql('missing');
+      done();
+    })
+  });
+
 });
