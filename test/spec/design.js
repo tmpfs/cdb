@@ -68,4 +68,41 @@ describe('cdb:', function() {
     })     
   });
 
+  it('should call design document show', function(done) {
+    var server = Server()
+      , opts = {
+          server: process.env.COUCH,
+          db: database,
+          ddoc: design,
+          name: 'mock'
+        }
+    server.design.show(opts, function(err, res, body) {
+      expect(err).to.eql(null);
+      expect(res).to.be.an('object');
+      expect(body).to.be.an('object');
+      expect(body.error).to.eql('missing');
+      expect(body.reason).to.eql('no document to show');
+      done();
+    })     
+  });
+
+  it('should call design document show with document id', function(done) {
+    var server = Server()
+      , opts = {
+          server: process.env.COUCH,
+          db: database,
+          ddoc: design,
+          name: 'mock',
+          id: 'missing-document'
+        }
+    server.design.show(opts, function(err, res, body) {
+      expect(err).to.eql(null);
+      expect(res).to.be.an('object');
+      expect(body).to.be.an('object');
+      expect(body.error).to.eql('missing');
+      expect(body.reason).to.eql('no document to show');
+      done();
+    })     
+  });
+
 });
