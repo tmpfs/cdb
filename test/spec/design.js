@@ -39,6 +39,13 @@ describe('cdb:', function() {
     })     
   })
 
+  it('should prefix design document id', function(done) {
+    var server = Server();
+    expect(server.design.prefix('mock')).to.eql('_design/mock');
+    expect(server.design.prefix('_design/mock')).to.eql('_design/mock');
+    done();
+  });
+
   it('should get design document info', function(done) {
     var server = Server({server: process.env.COUCH, db: database})
     server.design.info({ddoc: design}, function(err, res, body) {
