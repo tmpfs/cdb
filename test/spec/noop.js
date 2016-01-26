@@ -40,7 +40,6 @@ describe('cdb:', function() {
     })     
   });
 
-
   it('should repeat request', function(done) {
     server.repeat(function(err) {
       expect(err).to.be.instanceof(Error);
@@ -48,6 +47,24 @@ describe('cdb:', function() {
       expect(err.reason).to.eql('noop');
       expect(err.code).to.eql('ENOOP');
       done();
+    })     
+  });
+
+  it('should repeat request with last callback', function(done) {
+    var called = 0
+      , server = Server()
+      , opts = {
+          server: process.env.COUCH
+        }
+    server.info(opts, function(err) {
+      if(err) {
+        return done(err);
+      }
+      called++;
+      if(called === 2) {
+        return done(); 
+      }
+      server.repeat();
     })     
   });
 
