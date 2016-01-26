@@ -82,6 +82,20 @@ describe('cdb:', function() {
     })     
   });
 
+  it('should HEAD missing document', function(done) {
+    var server = Server()
+      , opts = {
+        url: [process.env.COUCH, database, 'missing-document'].join('/')
+      }
+    server.head(opts, function(err, res, body) {
+      expect(err).to.eql(null);
+      expect(res).to.be.an('object');
+      expect(body).to.be.an('object');
+      expect(body.status).to.eql(404);
+      done();
+    })     
+  });
+
   it('should GET document', function(done) {
     var server = Server()
       , opts = {
