@@ -67,10 +67,11 @@ describe('cdb:', function() {
 
   it('should deploy missing design document', function(done) {
     var server = Server()
+      , ddoc = design + '-missing'
       , opts = {
           server: process.env.COUCH,
           db: database,
-          ddoc: design + '-missing',
+          ddoc: ddoc,
           body: require('../fixtures/mock-design')
         }
     server.design.deploy(opts, function(err, res, body) {
@@ -78,6 +79,7 @@ describe('cdb:', function() {
       expect(res).to.eql(null);
       expect(body).to.be.an('object');
       expect(body.ok).to.eql(true);
+      expect(body.summary.ddoc).to.eql(ddoc);
       done();
     })
   });
