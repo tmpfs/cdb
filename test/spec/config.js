@@ -23,7 +23,25 @@ describe('cdb:', function() {
     })
   });
 
-  it('should get server entire config', function(done) {
+  it('should listen for 401 on unauth config', function(done) {
+    var server = Server({server: process.env.COUCH})
+      , opts = {};
+
+    server.on('401', function(err, res, body, cb) {
+      expect(err).to.be.an.instanceof(Error);
+      expect(err.status).to.eql(401);
+      expect(res).to.be.an('object');
+      expect(body).to.be.an('object');
+      expect(body.error).to.eql('unauthorized');
+      expect(cb).to.be.a('function');
+      expect(cb.name).to.eql('onUnauthConfig');
+      done();
+    })
+
+    server.config.get(opts, function onUnauthConfig() {});
+  });
+
+  it('should get entire server config', function(done) {
     var server = Server({server: process.env.COUCH})
       , opts = {};
     opts.headers = headers;
