@@ -1,5 +1,6 @@
 var expect = require('chai').expect
   , Server = require('../../index')
+  , uuid = require('uuid')
   , database = 'mock-design-deploy-db'
   , design = 'mock-design-document';
 
@@ -36,6 +37,24 @@ describe('cdb:', function() {
           db: database,
           ddoc: design,
           body: require('../fixtures/mock-design')
+        }
+    server.design.deploy(opts, function(err, res, body) {
+      expect(err).to.eql(null);
+      expect(res).to.eql(null);
+      expect(body).to.be.an('object');
+      expect(body.ok).to.eql(true);
+      done();
+    })
+  });
+
+  it('should deploy design document with uuid opt', function(done) {
+    var server = Server()
+      , opts = {
+          server: process.env.COUCH,
+          db: database,
+          ddoc: design,
+          body: require('../fixtures/mock-design'),
+          uuid: uuid
         }
     server.design.deploy(opts, function(err, res, body) {
       expect(err).to.eql(null);
