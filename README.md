@@ -14,6 +14,10 @@ Table of Contents
 cdb
 ===
 
+[<img src="https://travis-ci.org/tmpfs/cdb.svg" alt="Build Status">](https://travis-ci.org/tmpfs/cdb)
+[<img src="http://img.shields.io/npm/v/cdb.svg" alt="npm version">](https://npmjs.org/package/cdb)
+[<img src="https://coveralls.io/repos/tmpfs/cdb/badge.svg?branch=master&service=github&v=1" alt="Coverage Status">](https://coveralls.io/github/tmpfs/cdb?branch=master).
+
 Library for [couchdb](http://couchdb.apache.org) designed for [rlx](https://github.com/tmpfs/rlx) using [request](https://github.com/mikeal/request).
 
 This module differs from modules such as [nano](https://github.com/dscape/nano) in that it is designed to have feature parity with the [couch-api](http://docs.couchdb.org/en/latest/api/). As such it exhibits some interesting behaviour:

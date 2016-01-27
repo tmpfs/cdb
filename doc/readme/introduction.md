@@ -1,3 +1,7 @@
+[![Build Status](https://travis-ci.org/tmpfs/cdb.svg)](https://travis-ci.org/tmpfs/cdb)
+[![npm version](http://img.shields.io/npm/v/cdb.svg)](https://npmjs.org/package/cdb)
+[![Coverage Status](https://coveralls.io/repos/tmpfs/cdb/badge.svg?branch=master&service=github&v=1)](https://coveralls.io/github/tmpfs/cdb?branch=master)
+
 Library for [couchdb][] designed for [rlx][] using [request][].
 
 This module differs from modules such as [nano][] in that it is designed to have feature parity with the [couch-api][]. As such it exhibits some interesting behaviour:
