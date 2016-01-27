@@ -84,24 +84,6 @@ describe('cdb:', function() {
     })
   });
 
-  //it('should callback with parse error', function(done) {
-    //var server = Server()
-      //, opts = {
-          //server: process.env.COUCH,
-          //db: database,
-          //ddoc: design,
-          //body: '{'
-        //}
-    //server.design.deploy(opts, function(err, res, body) {
-      ////console.dir(err)
-      ////expect(err).to.eql(null);
-      ////expect(res).to.eql(null);
-      ////expect(body.ok).to.eql(true);
-      //done();
-    //})
-  //});
-
-
   it('should callback with no design document views', function(done) {
     var server = Server()
       , opts = {
