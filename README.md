@@ -25,7 +25,7 @@ This module differs from modules such as [nano](https://github.com/dscape/nano) 
 ## Install
 
 ```
-npm i cdb
+npm i cdb --save
 ```
 
 ## Developer

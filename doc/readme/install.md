@@ -1,5 +1,5 @@
 ## Install
 
 ```
-npm i cdb
+npm i cdb --save
 ```
