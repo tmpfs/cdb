@@ -5,14 +5,11 @@ describe('cdb:', function() {
 
   it('should error on bad JSON string (deserialize)', function(done) {
     var server = Server({server: process.env.COUCH});
-    // trigger an error in deserialize() by binding?
+    // trigger an error in deserialize() by binding
     server.deserialize = server.deserialize.bind(server, '{');
-    server.info(function(err, res, body) {
-      console.dir(arguments);
-      //expect(err).to.eql(null);
-      //expect(res).to.be.an('object');
-      //expect(body).to.be.an('object');
-      //expect(body.version).to.be.a('string');
+    server.info(function(err, res) {
+      expect(err).to.be.instanceof(Error);
+      expect(res).to.be.an('object');
       done();
     })     
   });
