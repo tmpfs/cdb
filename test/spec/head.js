@@ -16,13 +16,7 @@ describe('cdb:', function() {
         value: password
       };
     server.config.set(opts, function(err) {
-      if(err) {
-        return done(err);
-      }
-      opts = {username: username, password: password};
-      server.session.set(opts, function(err) {
-        done(err);
-      });
+      done(err);
     })
   })
 
@@ -34,12 +28,13 @@ describe('cdb:', function() {
     })
   })
 
-  // NOTE: triggers the code path for cookie header re-use
-  it('should get server info as authenticated user', function(done) {
-    server.info(function(err, res, body) {
-      expect(err).to.eql(null);
+  it('should get 401 error on HEAD _config', function(done) {
+    var opts = {url: [process.env.COUCH, '_config'].join('/')};
+    server.head(opts, function(err, res, body) {
+      expect(err).to.be.an.instanceof(Error);
+      expect(err.status).to.eql(401);
       expect(res).to.be.an('object');
-      expect(body).to.be.an('object');
+      expect(body).to.eql(undefined);
       done();
     })
   });
