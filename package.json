@@ -12,12 +12,12 @@
   "bugs": {
     "url": "https://github.com/tmpfs/cdb/issues"
   },
-  "keywords": {
+  "keywords": [
     "couchdb",
     "library",
     "http client",
     "request"
-  },
+  ],
   "dependencies": {
     "async": "~1.5.2",
     "cli-logger": "~0.5.40",

@@ -347,4 +347,12 @@ describe('cdb:', function() {
     })     
   });
 
+  it('should merge with full url', function(done) {
+    var server = Server();
+    var opts = server.db.merge({url: process.env.COUCH});
+    expect(opts).to.be.an('object');
+    expect(opts.url).to.eql(process.env.COUCH);
+    done();
+  });
+
 });
