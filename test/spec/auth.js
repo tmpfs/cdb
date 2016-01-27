@@ -16,7 +16,13 @@ describe('cdb:', function() {
         value: password
       };
     server.config.set(opts, function(err) {
-      done(err);
+      if(err) {
+        return done(err);
+      }
+      opts = {username: username, password: password};
+      server.session.set(opts, function(err) {
+        done(err);
+      });
     })
   })
 
