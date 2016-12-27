@@ -3,9 +3,18 @@ services:
 language: node_js
 script: npm run cover
 node_js:
-  - "4.1"
-  - "4.0"
-  - "0.12"
-  - "stable"
+  - '4.1'
+  - '4.0'
+  - '0.12'
+  - stable
 after_success:
   - npm run coveralls
+deploy:
+  provider: npm
+  email: freeformsystems@gmail.com
+  api_key:
+    secure: i86LumsvYLp1Y7ZY03k9kpguJCENQ7Ag+pf8VP/vogYPfu5+OO7BUDEjdGXdTCtBAAwUrLDpmqDMYCK/jNwiBHeLWAGHo80gplmwPg0iA/rY3fuVEQrAs/4bEoYFtS40cV/dgIZnzyOyZNwLLIeUm8egY9+87sCuKdvv9VYnbs/p18SpmjY4+oqShJ+KOxIio2qdrovYZCAp7inL3KFCcIOJEsrJfreOKF6JAd2zTHVCIg3RA8t+hsgME5qG4IXQMthM3mpR+hQ5GNVvJpEoJOVAuPVMf2NQddMM3JFh6bd7MXFXcSzhiB3TEqw5iXt4EUZSpQueWzrngzTivY+SZt5oMu1C3YM1cj8LFs71hNwBm/zV35PZCUw8Ds+08E/Eum517wigyo+birqOFPELvewmoWvJwOdowXTfc6sPKYWumjjrpK3nWu+bjcIIgG79FAGPXAXIvIvRXWuS0UclNKFu4v1uCiSgo3NfKUwiVuwd6HK1jnUt675n6B4PNnJGa6/5Swls/wLe8P8AyRwe2NwJWVyY887EMrwHzHkWGm608+up1y8Ft+/+3D4BfQ3uU4kPXXTbWoi4IZ5ablMvATk80xRrYfiyY/PjkeGKbAJoL9Zp+YAQRROVjT+DH9cX9WVupeXAPQYkb7j7rg/1sB++/+LxQdtxIB/UhPWXXhY=
+  on:
+    node: '4.1'
+    tags: true
+    repo: tmpfs/cdb

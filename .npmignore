@@ -3,6 +3,7 @@ target
 build
 package
 test
+.travis.yml
 *.bak
 *.log
 *.pid
