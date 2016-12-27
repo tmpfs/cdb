@@ -9,7 +9,7 @@ describe('cdb:', function() {
       expect(err).to.eql(null);
       expect(res).to.be.an('object');
       expect(body).to.be.an('object');
-      setTimeout(done, 2000);
+      setTimeout(done, 5000);
     })     
   });
 
@@ -19,7 +19,7 @@ describe('cdb:', function() {
       expect(err).to.eql(null);
       expect(res).to.be.an('object');
       expect(body).to.be.an('object');
-      setTimeout(done, 2000);
+      setTimeout(done, 5000);
     })     
   });
 
