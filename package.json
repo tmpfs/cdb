@@ -34,7 +34,7 @@
   "scripts": {
     "lint": "jshint . && jscs .",
     "import": "./bin/import",
-    "readme": "mdp --force -v",
+    "readme": "mk readme --force",
     "clean": "rm -rf coverage",
     "mock-file": "dd if=/dev/zero of=test/fixtures/mock.txt bs=131072 count=1",
     "pretest": "rm -rf target && mkdir target",
@@ -42,27 +42,5 @@
     "precover": "npm run pretest",
     "cover": "NODE_ENV=test istanbul cover _mocha -- test/global ${SPEC:-test/spec}",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
-  },
-  "mdp": {
-    "title": "cdb",
-    "pedantic": true,
-    "include": "doc/readme",
-    "require": "lib",
-    "links": "links.md",
-    "toc": "Table of Contents",
-    "base": "https://github.com/tmpfs/cdb",
-    "partial": [
-      {
-        "inc": [
-          "introduction.md",
-          "install.md"
-        ]
-      },
-      {
-        "inc": [
-          "developer.md"
-        ]
-      }
-    ]
   }
 }
